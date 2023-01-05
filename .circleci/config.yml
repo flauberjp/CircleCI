@@ -12,21 +12,15 @@ jobs:
           username: flauberjp
           password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
     steps:
+      - docker/install-docker
       - docker/push:
           image: simple-job-from-circle-ci 
           registry: docker.io 
           digest-path: . 
-  install-docker-job:
-    docker:
-      # replace with your preferred image
-      - image: cimg/base:stable
-    steps:
-      - docker/install-docker
 
 workflows:
   my-workflow:
     jobs:
-      - install-docker-job
       - my-job
 
           
