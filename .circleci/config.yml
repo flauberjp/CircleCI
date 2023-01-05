@@ -22,7 +22,11 @@ jobs:
           docker build -t flauberjp/simple-job-from-circle-ci:$TAG .
           echo $DOCKER_PASSWORD | docker login -u flauberjp --password-stdin
       - run: |
-          docker run -d flauberjp/simple-job-from-circle-ci:$TAG | xargs docker logs --until 1m
+          CONTAINER_ID=docker run -d flauberjp/simple-job-from-circle-ci:$TAG
+      - run: | 
+          echo $CONTAINER_ID
+      - run: | 
+          docker logs --until 1m $CONTAINER_ID
       #    docker push flauberjp/simple-job-from-circle-ci:$TAG
 
 workflows:
