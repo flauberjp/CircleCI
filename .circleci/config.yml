@@ -13,12 +13,14 @@ jobs:
           password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
     steps:
       - docker/install-docker
+      - run: docker --version 
       - docker/push:
           image: simple-job-from-circle-ci 
           registry: flauberjp
           digest-path: . 
 
 workflows:
+  build-with-docker:
   my-workflow:
     jobs:
       - my-job
