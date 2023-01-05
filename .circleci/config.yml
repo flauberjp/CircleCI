@@ -22,7 +22,7 @@ jobs:
           docker build -t flauberjp/simple-job-from-circle-ci:$TAG .
           echo $DOCKER_PASSWORD | docker login -u flauberjp --password-stdin
       - run: |
-          CONTAINER_ID=docker run -d flauberjp/simple-job-from-circle-ci:$TAG
+          CONTAINER_ID=$(docker run -d flauberjp/simple-job-from-circle-ci:$TAG)
       - run: | 
           echo $CONTAINER_ID
       - run: | 
