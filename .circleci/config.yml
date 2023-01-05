@@ -4,18 +4,23 @@ orbs:
   docker: circleci/docker@1.7.0
 
 jobs:
-  example-job:
+  my-job:
     docker:
       # replace with your preferred image
       - image: cimg/base:stable
+        auth:
+          username: flauberjp
+          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
     steps:
-      - docker/build:
-          image: . 
+      - docker/push:
+          image: simple-job-from-circle-ci 
+          registry: docker.io 
+          digest-path: . 
 
 workflows:
-  example-workflow:
+  my-workflow:
     jobs:
-      - docker/publish:
-          docker-password: DOCKER_PASSWORD 
-          image: flauberjp/simple-node 
+      - my-job
+
+          
 
