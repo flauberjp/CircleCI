@@ -22,7 +22,6 @@ jobs:
           docker build -t flauberjp/simple-job-from-circle-ci:$TAG .
           echo $DOCKER_PASSWORD | docker login -u flauberjp --password-stdin
           CONTAINER_ID=$(docker run -d flauberjp/simple-job-from-circle-ci:$TAG)
-          echo $CONTAINER_ID
           docker logs --until 1m $CONTAINER_ID
       #    docker push flauberjp/simple-job-from-circle-ci:$TAG
 
