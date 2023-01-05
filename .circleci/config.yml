@@ -14,12 +14,10 @@ jobs:
     steps:
       - docker/install-docker
       - run: 
-          name: a step name
-          command: docker --version 
-      - docker/push:
-          image: simple-job-from-circle-ci 
-          registry: flauberjp
-          digest-path: . 
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t flauberjp/simple-job-from-circle-ci:$TAG .
+          echo $DOCKER_PASSWORD | docker login -u flauberjp --password-stdin
+          docker push flauberjp/simple-job-from-circle-ci:$TAG
 
 workflows:
   my-workflow:
