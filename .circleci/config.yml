@@ -15,7 +15,7 @@ jobs:
       - docker/install-docker
       - docker/push:
           image: simple-job-from-circle-ci 
-          registry: docker.io 
+          registry: flauberjp
           digest-path: . 
 
 workflows:
